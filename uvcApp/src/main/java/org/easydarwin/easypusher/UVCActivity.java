@@ -1,17 +1,18 @@
 package org.easydarwin.easypusher;
 
-import android.arch.lifecycle.Observer;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.SurfaceTexture;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.view.TextureView;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.lifecycle.Observer;
 
 import org.easydarwin.easypusher.push.MediaStream;
 import org.easydarwin.easypusher.util.RxHelper;
@@ -109,6 +110,7 @@ public class UVCActivity extends AppCompatActivity {
     // 权限获取到了
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode,permissions,grantResults);
         switch (requestCode) {
             case REQUEST_CAMERA_PERMISSION: {
                 if (grantResults.length > 1
@@ -121,7 +123,7 @@ public class UVCActivity extends AppCompatActivity {
                     });
                 } else {
                     // 没有获取到权限,退出....
-                    Intent intent = new Intent(this, MediaStream.class);
+                    Intent intent = new Intent(this,MediaStream.class);
                     stopService(intent);
 
                     finish();
